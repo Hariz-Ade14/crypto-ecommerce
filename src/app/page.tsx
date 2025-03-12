@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Body from "../Components/Body"
 import Header from "../Components/Header";
 

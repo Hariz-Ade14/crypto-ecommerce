@@ -1,6 +1,4 @@
 import React from "react";
-import { FaWhatsapp } from "react-icons/fa";
-import { Button } from "./ui/button";
 import Image from "next/image";
 import picture from "../../public/portfolio-pic.jpg";
 const Bio = () => {

@@ -3,7 +3,7 @@ import React from "react";
 const Experience = () => {
   return (
     <div>
-      <h1 className="font-bold text-[30px] my-10 whitespace-nowrap">
+      <h1 className="font-bold text-[30px] my-10">
         Professional Experience
       </h1>
       <div className="div">

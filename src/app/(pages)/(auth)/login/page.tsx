@@ -1,0 +1,86 @@
+"use client";
+import React, { useState } from "react";
+import { Button } from "@/app/Components/ui/button";
+import Link from "next/link";
+import {useRouter} from "next/navigation";
+import { useAuth } from "@/app/Components/authContextProvider";
+
+type userDetailsProps = {
+  email: string;
+  password: string;
+};
+const Login = () => {
+  const [userDetails, setuserDetails] = useState<userDetailsProps>({
+    email: "",
+    password: "", 
+  });
+
+    const [error, setError] = useState<string | null>(null);
+  
+    const [loading, setLoading] = useState(false);
+  
+  const { login, googleSignIn } = useAuth()
+  const router = useRouter();
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+
+    try {
+      setError("")
+      setLoading(true)
+      await login(email, password)
+      router.push("/products")
+    } catch (err: any) {
+      setError(err.message || "Failed to sign in")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setuserDetails({ ...userDetails, [e.target.name]: e.target.value });
+  };
+
+  const { email, password } = userDetails;
+  return (
+    <div className="flex flex-col my-20 w-[80%] mx-auto gap-3">
+      <h1 className="font-bold text-[30px] text-center">Login</h1>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-4 w-[50%] mx-auto"
+      >
+        <input
+          className="border rounded-[5px] border-solid p-2"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          type="email"
+          placeholder="Email"
+        />
+        <input
+          className="border rounded-[5px] border-solid p-2"
+          name="password"
+          value={password}
+          onChange={handleChange}
+          type="password"
+          placeholder="Password"
+        />
+    
+       
+        <Button type="submit">Login</Button>
+        <p className="text-center mt-3">
+          Don't have an account?{" "}
+          <Link className="font-semibold" href="/signup">
+            Signup
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+};
+const page = () => {
+  return <Login />;
+};
+
+export default page;

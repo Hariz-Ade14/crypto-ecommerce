@@ -4,6 +4,7 @@ import { useCart } from "react-use-cart";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/app/Components/ui/button";
 import ProtectedRoute from "@/app/Components/protectedRoutes";
+import { WalletOptions,Account } from "@/app/Components/walletConnect";
 const Checkout = () => {
   const { cartTotal } = useCart();
   const [activeTab, setActiveTab] = useState("Pay with Fiat");
@@ -18,7 +19,7 @@ const Checkout = () => {
   ];
 
   return (
-    <div className="my-20 w-[60%] flex flex-col gap-10 mx-auto">
+    <div className="my-20 md:w-[60%] w-[90%] flex flex-col gap-10 mx-auto">
       <h1 className="font-bold text-[30px]">Total Amount = ${cartTotal}</h1>
 
       <div className="flex flex-col  gap-5 rounded-[10px]">
@@ -33,7 +34,7 @@ const Checkout = () => {
                     activeTab === label
                       ? "bg-black text-white"
                       : "bg-white text-black"
-                  } rounded-[6px] font-semibold text-[20px] px-3 py-1 w-1/2 text-center`}
+                  } rounded-[6px] font-semibold text-[15px] md:text-[20px] px-3 py-1 w-1/2 text-center`}
                 >
                   {label}
                 </div>
@@ -51,9 +52,7 @@ const Checkout = () => {
             </div>
           )}
           {activeTab === "Pay with Crypto" && (
-            <div className="flex gap-3">
-              <Button>Wallet</Button>
-            </div>
+            <WalletOptions/>
           )}
         </div>
       </div>

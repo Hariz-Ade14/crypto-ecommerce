@@ -5,6 +5,7 @@ export type valueProps = {
      name: string;
      price: number | null;
      image: string | null,
+     id? : string
      // cartItems: Array<string>
 }
 type ContextProps = {
@@ -18,7 +19,7 @@ const UserContextProvider = ({children}: {children: React.ReactNode}) => {
            name: "",
            price: null,
            image: null,
-          //  cartItems: [],
+        
      });
       return(
         <ProfileContext value={{details, setDetails}}>

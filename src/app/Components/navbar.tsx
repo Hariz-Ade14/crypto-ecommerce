@@ -7,12 +7,12 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { IoMdClose } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
-import { CiShoppingCart,CiUser } from "react-icons/ci";
+import { CiShoppingCart,CiUser,CiTrash } from "react-icons/ci";
 import XIV from "../../../public/assets/XIV.svg";
 import Image from "next/image";
 import { Button } from "./ui/button";
 const Navbar = () => {
-  const { totalUniqueItems } = useCart();
+  const { totalUniqueItems,emptyCart } = useCart();
   const [menu, setMenu] = useState(false);
   const showMenu = () => {
     setMenu(!menu);
@@ -58,7 +58,7 @@ const Navbar = () => {
           <Link href="/new">New</Link>
         </ul>
         <div className="hidden md:flex items-center gap-4">
-          <CiSearch size={24} />
+          {/* <CiSearch size={24} /> */}
           <div className="relative h-[40px]">
             <Link href="/cart">
               <CiShoppingCart className="mt-2" size={24} />
@@ -74,12 +74,14 @@ const Navbar = () => {
           <Link href="/profile">
              <CiUser size={20}/>
           </Link>
+          {/* <CiTrash onClick={emptyCart} size={20} /> */}
+
         </div>
 
         {/* Mobile Menu */}
 
         <div className="flex gap-5 md:hidden">
-          <CiSearch size={20} />
+          {/* <CiSearch size={20} /> */}
           <BiMenuAltRight size={20} onClick={showMenu} />
         </div>
       </div>

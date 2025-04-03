@@ -25,7 +25,7 @@ const Signup = () => {
   const [error, setError] = useState<string | null>(null);
   const [loader, setLoader] = useState(false);
   const router = useRouter();
-  const { signup,loading,googleSignIn } = useAuth()
+  const { signup, googleSignIn,currentUser } = useAuth();
   const SignUp = async () => {
     if (!userDetails.name || !userDetails.email || !userDetails.password) {
       setError("Please fill all fields");
@@ -34,23 +34,33 @@ const Signup = () => {
     }
 
     try {
-      setError("")
-      setLoader(!loading)
-      await signup(email, password,name);
+      setError("");
+      setLoader(!loader);
+      await signup(email, password, name);
       toast.success("Account created successfully");
       router.push("/login");
     } catch (err: any) {
-      setError(err.message || "Failed to create an account")
+      setError(err.message || "Failed to create an account");
     } finally {
-      setLoader(!loading)
+      setLoader(!loader);
     }
-    
-   
   };
+  
+  const signInWithGoogle = async () => {
+        const GoogleSignIn = await googleSignIn();
+        setError("");
+        toast.error(null);
+        currentUser?.displayName && router.push("/products");
+        return GoogleSignIn;
+  }
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     SignUp();
   };
+
+  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setuserDetails({ ...userDetails, [e.target.name]: e.target.value });
@@ -59,11 +69,11 @@ const Signup = () => {
 
   const { name, email, password } = userDetails;
   return (
-    <div className="flex flex-col my-20 w-[80%] mx-auto gap-3">
+    <div className="flex flex-col w-full my-20 md:w-[80%] mx-auto gap-3">
       <h1 className="font-bold text-[30px] text-center">Sign Up</h1>
       <form
         onSubmit={(e: FormEvent<HTMLFormElement>) => handleSubmit(e)}
-        className="flex flex-col gap-4 w-[50%] mx-auto"
+        className="flex flex-col gap-4 w-[80%] md:w-[50%] mx-auto"
       >
         <input
           className="border rounded-[5px] border-solid p-2"
@@ -94,6 +104,7 @@ const Signup = () => {
         <Button
           className="flex gap-3 justify-center border hover:bg-white items-center text-black bg-white"
           type="submit"
+          onClick={signInWithGoogle}
         >
           <Image
             className="w-6 h-6 rounded-[50%]"
@@ -103,8 +114,10 @@ const Signup = () => {
           Continue with google
         </Button>
         <Button type="submit">
-          {loading ? (
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          {loader ? (
+            <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow">
+              <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-200 border-t-blue-600 mb-4"></div>
+            </div>
           ) : (
             "Sign up"
           )}
@@ -116,7 +129,7 @@ const Signup = () => {
           </Link>
         </p>
       </form>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import { Button } from "@/app/Components/ui/button";
 import Link from "next/link";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/Components/authContextProvider";
+import { ToastContainer, toast } from "react-toastify";
 
 type userDetailsProps = {
   email: string;
@@ -12,31 +13,31 @@ type userDetailsProps = {
 const Login = () => {
   const [userDetails, setuserDetails] = useState<userDetailsProps>({
     email: "",
-    password: "", 
+    password: "",
   });
 
-    const [error, setError] = useState<string | null>(null);
-  
-    const [loading, setLoading] = useState(false);
-  
-  const { login, googleSignIn } = useAuth()
+  const [error, setError] = useState<string | null>(null);
+
+  const [loading, setLoading] = useState(false);
+
+  const { login } = useAuth();
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      setError("")
-      setLoading(true)
-      await login(email, password)
-      router.push("/products")
+      setError("");
+      setLoading(true);
+      await login(email, password);
+      toast.success("Login successful")
+      router.push("/products");
     } catch (err: any) {
-      setError(err.message || "Failed to sign in")
+      setError(err.message || "Failed to sign in");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setuserDetails({ ...userDetails, [e.target.name]: e.target.value });
@@ -44,11 +45,11 @@ const Login = () => {
 
   const { email, password } = userDetails;
   return (
-    <div className="flex flex-col my-20 w-[80%] mx-auto gap-3">
+    <div className="flex flex-col my-20 w-full md:w-[80%] mx-auto gap-3">
       <h1 className="font-bold text-[30px] text-center">Login</h1>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-4 w-[50%] mx-auto"
+        className="flex flex-col gap-4 w-[80%] md:w-[50%] mx-auto"
       >
         <input
           className="border rounded-[5px] border-solid p-2"
@@ -66,9 +67,18 @@ const Login = () => {
           type="password"
           placeholder="Password"
         />
-    
-       
-        <Button type="submit">Login</Button>
+        {error && <p className="text-red-500">{error}</p>}
+
+
+        <Button type="submit">
+          {loading ? (
+            <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow">
+              <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-200 border-t-blue-600 mb-4"></div>
+            </div>
+          ) : (
+            "Login"
+          )}
+        </Button>
         <p className="text-center mt-3">
           Don't have an account?{" "}
           <Link className="font-semibold" href="/signup">
@@ -76,6 +86,7 @@ const Login = () => {
           </Link>
         </p>
       </form>
+      <ToastContainer/>
     </div>
   );
 };

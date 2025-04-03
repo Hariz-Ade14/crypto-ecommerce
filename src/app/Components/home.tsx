@@ -179,7 +179,7 @@ const Home = () => {
             exqulsite finish
           </p>
         </div>{" "}
-        <div className="flex items-stretch bg-red-600 md:h-[400px] md:flex-row flex-col md:justify-between">
+        <div className="flex items-stretch  md:h-[400px] md:flex-row flex-col md:justify-between">
           <Image
             src={img1}
             alt="new collection"

@@ -48,15 +48,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch (error) {
         throw error;
     }
-
+    setCurrentUser(userCredential.user)
   }
 
   async function login(email: string, password: string) {
-    return signInWithEmailAndPassword(auth, email, password)
+    const SignIn = await signInWithEmailAndPassword(auth, email, password)
       .then(() => {})
       .catch((error) => {
         throw error
-      })
+      });
+      setCurrentUser(auth.currentUser);
   }
 
   async function logout() {
@@ -84,14 +85,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       })
   }
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user)
-      setLoading(false)
-    })
+  // useEffect(() => {
+    // const unsubscribe = onAuthStateChanged(auth, (user) => {
+    //   setCurrentUser(user)
+    //   setLoading(false)
+    // })
 
-    return unsubscribe
-  }, [])
+    // return unsubscribe
+  // }, [])
 
   const value = {
     currentUser,

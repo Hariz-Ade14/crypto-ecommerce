@@ -7,6 +7,7 @@ import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/Components/authContextProvider";
+
 const Page = () => {
   const {
     isEmpty,
@@ -53,10 +54,10 @@ const Page = () => {
         <div className="flex flex-col w-[40%] gap-3">
           <div className="flex flex-col gap-10">
             {items?.map((item) => {
-              console.log(item.src.src);
+              console.log(item);
               return (
                 <div>
-                  <div key={item?.id} className="flex gap-2 items-center">
+                  <div key={item?.name} className="flex gap-2 items-center">
                     <img src={item?.src.src} className="w-[200px] h-[200px]" />
                     <div className="flex flex-col font-semibold gap-4">
                       <Link href="/details">
@@ -65,16 +66,15 @@ const Page = () => {
                             handleProfilePreviewClick(
                               item.name,
                               item.price,
-                              item?.image.src
+                              item?.src.src
                             )
                           }
-                          key={item.id}
                           className="hover:underline cursor-pointer"
                         >
                           {item.name}
                         </p>
                       </Link>
-                      <p key={item.id}>Price: ${item.price}</p>
+                      <p>Price: ${item.price}</p>
                       <div className="flex gap-4 h-[30px] items-center">
                         <button
                           onClick={() =>
@@ -118,7 +118,7 @@ const Page = () => {
             <p className="font-bold text-[20px]">Subtotal = ${cartTotal} </p>
             <Link href="/checkout" className="w-full cursor-pointer">
               <Button 
-              // onClick={checkOut}
+              onClick={checkOut}
                className="w-full">
                 Checkout
               </Button>

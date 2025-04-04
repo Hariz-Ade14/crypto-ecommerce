@@ -1,13 +1,12 @@
 "use client"
 
 import type React from "react"
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useState } from "react"
 import {
   type User,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged,
   sendPasswordResetEmail,
   GoogleAuthProvider,
   signInWithPopup,
@@ -37,7 +36,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [currentUser, setCurrentUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
 
   async function signup(email: string, password: string,username: string) {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -58,6 +57,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         throw error
       });
       setCurrentUser(auth.currentUser);
+      return SignIn;
   }
 
   async function logout() {

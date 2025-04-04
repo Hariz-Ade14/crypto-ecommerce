@@ -7,11 +7,11 @@ import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/Components/authContextProvider";
+import Image from "next/image";
 
 const Page = () => {
   const {
     isEmpty,
-    totalUniqueItems,
     cartTotal,
     items,
     updateItemQuantity,
@@ -56,9 +56,9 @@ const Page = () => {
             {items?.map((item) => {
               console.log(item);
               return (
-                <div>
-                  <div key={item?.name} className="flex gap-2 items-center">
-                    <img src={item?.src.src} className="w-[200px] h-[200px]" />
+                <div key={item?.name}>
+                  <div className="flex gap-2 items-center">
+                    <Image alt="" src={item?.src.src} className="w-[200px] h-[200px]" />
                     <div className="flex flex-col font-semibold gap-4">
                       <Link href="/details">
                         <p

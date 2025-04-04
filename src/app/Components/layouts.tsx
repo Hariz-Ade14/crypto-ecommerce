@@ -1,9 +1,9 @@
 "use client";
 import React, { JSX, useState } from "react";
-import Navbar from "./navbar";
-import Footer from "./footer";
+// import Navbar from "./navbar";
+// import Footer from "./footer";
 import { RiArrowRightSLine, RiArrowDownSLine } from "react-icons/ri";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 
 export const sizes: string[] = ["XS", "S", "M", "L", "XL", "XXL"];
 export const Sizes = () => {
@@ -101,20 +101,20 @@ export const categories: categoriesProps[] = [
 ];
 const ProductsLayouts = ({ children }: { children: React.ReactNode }) => {
   const [categoryContent, setContent] = useState<boolean>(false);
-  const handleContent = (title: string) => {
-    // if(title === "Color" || title === "Category" || title === "Price Range" || title === "Collecion" || title === "Tags" || title === "Ratings"){
-    if (
-      title === "Color" ||
-      title === "Category" ||
-      title === "Price Range" ||
-      title === "Collecion" ||
-      title === "Tags" ||
-      title === "Ratings"
-    ) {
-      setContent(!categoryContent);
-    }
-    // }
-  };
+  // const handleContent = (title: string) => {
+  //   // if(title === "Color" || title === "Category" || title === "Price Range" || title === "Collecion" || title === "Tags" || title === "Ratings"){
+  //   if (
+  //     title === "Color" ||
+  //     title === "Category" ||
+  //     title === "Price Range" ||
+  //     title === "Collecion" ||
+  //     title === "Tags" ||
+  //     title === "Ratings"
+  //   ) {
+  //     setContent(!categoryContent);
+  //   }
+  //   // }
+  // };
 
   return (
     <>
@@ -130,7 +130,7 @@ const ProductsLayouts = ({ children }: { children: React.ReactNode }) => {
               <div key={title}>
                 <div
                   className="border-b w-full border-solid flex items-center justify-between border-gray-400 text-left py-2 text-[15px]"
-                  onClick={() => handleContent(title)}
+                  // onClick={() => handleContent(title)}
                 >
                   {title}
                   {title === "Color" ||

@@ -6,13 +6,12 @@ import { BiMenuAltRight } from "react-icons/bi";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { IoMdClose } from "react-icons/io";
-import { CiSearch } from "react-icons/ci";
-import { CiShoppingCart,CiUser,CiTrash } from "react-icons/ci";
+import { CiShoppingCart,CiUser } from "react-icons/ci";
 import XIV from "../../../public/assets/XIV.svg";
 import Image from "next/image";
 import { Button } from "./ui/button";
 const Navbar = () => {
-  const { totalUniqueItems,emptyCart } = useCart();
+  const { totalUniqueItems } = useCart();
   const [menu, setMenu] = useState(false);
   const showMenu = () => {
     setMenu(!menu);

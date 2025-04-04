@@ -80,7 +80,7 @@ const Login = () => {
           )}
         </Button>
         <p className="text-center mt-3">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link className="font-semibold" href="/signup">
             Signup
           </Link>

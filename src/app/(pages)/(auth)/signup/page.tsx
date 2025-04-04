@@ -4,7 +4,6 @@ import { Button } from "@/app/Components/ui/button";
 import Link from "next/link";
 import googlelogo from "../../../../../public/assets/googlelogo.png";
 import Image from "next/image";
-import { Loader2 } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/Components/authContextProvider";
@@ -39,8 +38,12 @@ const Signup = () => {
       await signup(email, password, name);
       toast.success("Account created successfully");
       router.push("/login");
-    } catch (err: any) {
-      setError(err.message || "Failed to create an account");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Failed to create an account");
+      }
     } finally {
       setLoader(!loader);
     }

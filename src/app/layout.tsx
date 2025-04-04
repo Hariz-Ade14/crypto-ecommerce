@@ -22,18 +22,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const metadata: Metadata = {
-  title: "Crypto",
-  description: "Pertfolio page",
-  icons: {
-    icon: [
-      {
-        rel: "icon",
-        url: "/images/portfolio-pic.jpg",
-      },
-    ],
-  },
-};
+// const metadata: Metadata = {
+//   title: "Crypto",
+//   description: "Pertfolio page",
+//   icons: {
+//     icon: [
+//       {
+//         rel: "icon",
+//         url: "/images/portfolio-pic.jpg",
+//       },
+//     ],
+//   },
+// };
 
 export default function RootLayout({
   children,

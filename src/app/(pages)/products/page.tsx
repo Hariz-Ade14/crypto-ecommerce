@@ -260,9 +260,10 @@ const Products = () => {
                   data-aos=""
                   className="flex gap-2 md:gap-2 flex-row flex-nowrap md:flex-wrap w-full md:overflow-auto overflow-scroll md:w-[55%]"
                 >
-                  {tabs.map(({ title, content }) => {
+                  {tabs.map(({ title },index) => {
                     return (
                       <div
+                       key={index}
                         onClick={() => handleActiveTab(title)}
                         className={`${
                           activeTab === title
@@ -286,9 +287,9 @@ const Products = () => {
           >
             {products.map((item) => {
               return (
-                <div>
+                <div  key={item.id}>
                   <div
-                    key={item.id}
+                  
                     className="flex flex-col gap-1 w-[49%] cursor-pointer sm:w-[49%] border border-solid px-1 pb-1 md:h-[300px] md:flex-col md:w-[160px] md:gap-1"
                   >
                     <Image

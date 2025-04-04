@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Josefin_Slab,Geist_Mono } from "next/font/google";
 import "../globals.css";
-import Navbar from "../Components/navbar";
-import UserContextProvider from "../Components/contextProvider";
-import Footer from "../Components/footer";
+// import Navbar from "../Components/navbar";
+// import UserContextProvider from "../Components/contextProvider";
+// import Footer from "../Components/footer";
 const josefinSlab = Josefin_Slab({
   variable: "--font-geist-sans",
   subsets: ["latin"],

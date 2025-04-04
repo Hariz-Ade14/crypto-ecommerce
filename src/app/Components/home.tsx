@@ -1,11 +1,11 @@
 "use client";
-import React, { useContext } from "react";
+import React from "react";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { ProfileContext } from "./contextProvider";
+// import { ProfileContext } from "./contextProvider";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import Search from "./search";

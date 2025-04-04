@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { Connector, useConnect } from 'wagmi'
+import { useConnect } from 'wagmi'
 import { useAccount, useDisconnect, useEnsAvatar, useEnsName } from 'wagmi'
 import { Button } from './ui/button'
+import Image from 'next/image'
 export function WalletOptions() {
   const { connectors, connect } = useConnect()
 
@@ -22,7 +23,7 @@ export function Account() {
 
   return (
     <div>
-      {ensAvatar && <img alt="ENS Avatar" src={ensAvatar} />}
+      {ensAvatar && <Image alt="ENS Avatar" src={ensAvatar} />}
       {address && <div>{ensName ? `${ensName} (${address})` : address}</div>}
       <button onClick={() => disconnect()}>Disconnect</button>
     </div>

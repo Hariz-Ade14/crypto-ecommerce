@@ -4,7 +4,7 @@ import { useCart } from "react-use-cart";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/app/Components/ui/button";
 import ProtectedRoute from "@/app/Components/protectedRoutes";
-import { WalletOptions,Account } from "@/app/Components/walletConnect";
+import { WalletOptions } from "@/app/Components/walletConnect";
 const Checkout = () => {
   const { cartTotal } = useCart();
   const [activeTab, setActiveTab] = useState("Pay with Fiat");

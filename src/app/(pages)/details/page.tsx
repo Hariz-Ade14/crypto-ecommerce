@@ -13,7 +13,7 @@ import { Sizes } from "@/app/Components/layouts";
 const Page = () => {
   const profileContext = useContext(ProfileContext);
   const details = profileContext?.details;
-  const setDetails = profileContext?.setDetails;
+  // const setDetails = profileContext?.setDetails;
 
   const Item = {
     image: details?.image,

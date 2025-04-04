@@ -53,7 +53,7 @@ const Signup = () => {
         const GoogleSignIn = await googleSignIn();
         setError("");
         toast.error(null);
-        currentUser?.displayName && router.push("/products");
+        currentUser && router.push("/products");
         return GoogleSignIn;
   }
 

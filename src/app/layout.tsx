@@ -1,6 +1,6 @@
 "use client";
 
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 import { Josefin_Slab, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Components/navbar";

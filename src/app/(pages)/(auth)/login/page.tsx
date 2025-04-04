@@ -32,8 +32,12 @@ const Login = () => {
       await login(email, password);
       toast.success("Login successful")
       router.push("/products");
-    } catch (err: any) {
-      setError(err.message || "Failed to sign in");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Failed to create an account");
+      }
     } finally {
       setLoading(false);
     }

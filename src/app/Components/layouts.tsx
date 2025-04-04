@@ -100,7 +100,7 @@ export const categories: categoriesProps[] = [
   },
 ];
 const ProductsLayouts = ({ children }: { children: React.ReactNode }) => {
-  const [categoryContent, setContent] = useState<boolean>(false);
+  const [categoryContent] = useState<boolean>(false);
   // const handleContent = (title: string) => {
   //   // if(title === "Color" || title === "Category" || title === "Price Range" || title === "Collecion" || title === "Tags" || title === "Ratings"){
   //   if (

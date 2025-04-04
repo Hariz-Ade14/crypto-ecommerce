@@ -21,7 +21,7 @@ type AuthContextType = {
   logout: () => Promise<void>
   resetPassword: (email: string) => Promise<void>
   googleSignIn: () => Promise<void>
-  loading: boolean
+  // loading: boolean
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null)
@@ -101,7 +101,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     logout,
     resetPassword,
     googleSignIn,
-    loading,
+    // loading,
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -71,11 +71,17 @@ const Home = () => {
     },
   ];
 
+  const [searchValue, setSearchValue] = useState<string>("");
+
   return (
     <div className="my-20 px-6 md:px-20 flex flex-col gap-20">
       <div className="flex md:w-[50%] w-[100%] flex-col gap-3 items-start">
         <p className="md:w-[20px] text-[25px]">MEN WOMEN KIDS</p>
-        <Search style="md:w-[80%] w-full p-2"/>
+        <Search
+          setSearchValue={setSearchValue}
+          searchValue={searchValue}
+          style="md:w-[80%] w-full p-2"
+        />
       </div>
 
       <div className="flex md:flex-row flex-col items-stretch gap-4 justify-between">
@@ -156,7 +162,9 @@ const Home = () => {
                   <div className="flex items-start w-[100%] md:w-[90%] justify-between">
                     <div className="flex flex-col gap-1">
                       <p className="text-gray-500">{name}</p>
-                      <p className="font-semibold text-[13px] md:text-[16px]">{desc}</p>
+                      <p className="font-semibold text-[13px] md:text-[16px]">
+                        {desc}
+                      </p>
                     </div>
                     <p className="">${price}</p>
                   </div>

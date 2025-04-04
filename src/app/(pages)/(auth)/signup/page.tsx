@@ -24,7 +24,7 @@ const Signup = () => {
   const [error, setError] = useState<string | null>(null);
   const [loader, setLoader] = useState(false);
   const router = useRouter();
-  const { signup, googleSignIn,currentUser } = useAuth();
+  const { signup, googleSignIn } = useAuth();
   const SignUp = async () => {
     if (!userDetails.name || !userDetails.email || !userDetails.password) {
       setError("Please fill all fields");
